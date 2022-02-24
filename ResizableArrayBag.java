@@ -230,4 +230,19 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
         return intersectBag;
    }
 
+   public BagInterface<T> difference(BagInterface<T> bag2){
+       //Sanitize user input
+       //Prep return object
+       //Fill return object
+       //Create copy of collections
+       //Check to see if bag1 or bag2 is empty
+            //if empty return bag1
+       //Loop through all elements of bag2
+            //Check to see if bag 2 contains element
+                //If yes, remove element from copy of bag1
+                //move to next element in bag2
+                //If not, move to next element in bag2
+       return null;
+   }
+
 }
