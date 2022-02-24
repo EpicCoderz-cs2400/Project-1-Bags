@@ -170,4 +170,8 @@ public class LinkedBag<T> implements BagInterface<T> {
     public BagInterface<T> intersection(BagInterface<T> secondBag) {
         return null;
     }
+
+    public BagInterface<T> difference(BagInterface<T> bag2){
+        return null;
+    }
 }
