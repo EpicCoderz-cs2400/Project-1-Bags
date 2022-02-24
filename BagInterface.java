@@ -37,7 +37,10 @@ public interface BagInterface<T>
 	public boolean contains(T anEntry);
 	
     /** Retrieves all entries that are in this bag.
-		and return  A newly allocated array of all the entries in the bag. Note: If the bag is empty, the returned array is empty. */
+		and return a newly allocated array of all the entries in the bag. Note: If the bag is empty, the returned array is empty. */
 	public T[] toArray();
+
+	/** Method that creates a new collection of the entries that occur in both collections. Returns a new bag. */
+	public BagInterface<T> intersection(BagInterface<T> secondBag);
     
 } // end BagInterface

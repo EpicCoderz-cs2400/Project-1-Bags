@@ -170,4 +170,64 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
       bag = Arrays.copyOf(bag, newLength);
    } // end doubleCapacity
 
+   public BagInterface<T> intersection(BagInterface<T> secondBag)
+   {
+        //sanitize user input?
+        checkIntegrity();
+        //prep the return object    
+        BagInterface<T> intersectBag = new ResizableArrayBag<T>();
+        //create copies of each bag
+        BagInterface<T> first = new ResizableArrayBag<T>(); 
+        BagInterface<T> second = new ResizableArrayBag<T>(); //parameter bag
+        //creating arrays to copy the contents
+        T[] bag1 =toArray();
+        T[] bag2 = secondBag.toArray();
+
+        //add the contents to bag 1
+        for (int index = 0; index < bag1.length; index++)
+        {
+            first.add(bag1[index]);
+        } 
+
+        //add the contents to bag 2
+        for (int index = 0; index < bag2.length; index++)
+        {
+            second.add(bag2[index]);
+        } 
+
+        //beginning to fill bag 3 (intersection)
+        for (int index = 0; index < bag1.length; index++)
+        {
+            T value = bag1[index]; //gets [index] value in bag 1
+            int firstamount = 1; //frequency which T value appears in bag 1 after checking only one value
+        
+            if(second.contains(value)) //check to see if bag2 contains value from bag 1
+                firstamount = first.getFrequencyOf(value); //updated frequency which T value appears in bag 1 checking all values
+                int secondTimes = second.getFrequencyOf(value); //frequency in which T value appears in bag 2
+
+                //finds the smaller value of two frequencies and assigns that value to int timesToAdd
+                int timesToAdd;
+                if(firstamount < secondTimes)
+                    timesToAdd = firstamount;
+                else
+                    timesToAdd = secondTimes;
+
+                //adds T value to intersection bag j times (equal to timesToAdd)
+                for(int j =0; j < timesToAdd; j++)
+                {
+                intersectBag.add(value);
+                }
+        
+            //removes all T values from bag 1
+            for(int f =0; f< firstamount; f++)
+            {
+            first.remove(value);
+            }
+
+        } 
+
+        //return the new bag
+        return intersectBag;
+   }
+
 }
