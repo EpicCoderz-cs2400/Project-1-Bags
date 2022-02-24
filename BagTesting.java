@@ -49,6 +49,8 @@ public class BagTesting {
         testAdd(aBag4, contentsofBag4);
         testIntersection(aBag3, aBag4);
         System.out.println("Intersection should have: A A A B C");
+        testDifference(aBag3, aBag4);
+        System.out.println("Difference should have: A Y");
         
         //tests on two bags with same content for intersection 
         System.out.println("\nA new empty bag:");
@@ -163,5 +165,14 @@ public class BagTesting {
         aBag.intersection(secondBag);
         BagInterface<String> commonItems = aBag.intersection(secondBag);
         displayBag(commonItems);
+    }
+
+    //Tests the difference method
+    private static void testDifference(BagInterface<String> bag1, BagInterface<String> bag2)
+    {
+        System.out.println("Using difference with both bags: ");
+        bag1.difference(bag2);
+        BagInterface<String> uniqueItems = bag1.difference(bag2);
+        displayBag(uniqueItems);
     }
 }
