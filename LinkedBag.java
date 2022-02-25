@@ -195,14 +195,8 @@ public class LinkedBag<T> implements BagInterface<T> {
             return diffBag;
         }
 
-        //Convert bag 1 to array to populate copy
+        //Convert bag 2 to array
         T[] bag2Contents = bag2.toArray();
-
-        //Create and copy bag 2 with bag2Contents array
-        BagInterface<T> second = new LinkedBag<T>();
-        for (int i = 0; i < bag2Contents.length; i++) {
-            second.add(bag2Contents[i]);
-        }
 
         //Initalize element of bag 2
         T element = null;

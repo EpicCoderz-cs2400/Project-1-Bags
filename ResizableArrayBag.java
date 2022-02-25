@@ -253,12 +253,8 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
            return diffBag;
        }
 
-       //Create copy of bag2
-       BagInterface<T> second = new ResizableArrayBag<T>();
+       //Convert bag 2 to an array
        T[] bag2Contents = bag2.toArray();
-       for(int i = 0; i < bag2Contents.length; i++){
-           second.add(bag2Contents[i]);
-       }
 
        //Initalize element of bag2
        T element = null;
