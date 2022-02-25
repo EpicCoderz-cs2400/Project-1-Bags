@@ -173,5 +173,12 @@ public class LinkedBag<T> implements BagInterface<T> {
 
     public BagInterface<T> difference(BagInterface<T> bag2){
         return null;
+        //Sanitize user input
+        //Prep return object
+        //Check for simpler cases of a bag being empty
+        //Make copy of bags
+        //Loop through bag2
+            //Try and remove each element of bag2 from bag 1 if possible
+        //Return difference bag
     }
 }
