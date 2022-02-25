@@ -46,7 +46,7 @@ public interface BagInterface<T>
 	/**
 	 * Method that returns a collection of the difference between 2 collections.
 	 * @param bag2
-	 * @return collection made from finding all elements of the host collection that are not in bag2.
+	 * @return collection made from finding all elements of bag 1 that are not in bag2.
 	 */
 	public BagInterface<T> difference(BagInterface<T> bag2);
     
