@@ -237,44 +237,45 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
        //Prep return object
        BagInterface<T> diffBag = new ResizableArrayBag<T>();
 
-       //Fill return object
-       //Create copy of collections
-       BagInterface<T> second = new ResizableArrayBag<T>();
+       //Check to see if bag 1 is empty
+       if(numberOfEntries == 0) {
+           return diffBag;
+       }
 
        //Start return object as copy of bag1
        for(int i = 0; i < numberOfEntries; i++){
            diffBag.add(bag[i]);
        }
 
-       //Copy bag2
+       //Check to see if bag 2 is empty
+       if(bag2.isEmpty()) {
+           //return copied bag
+           return diffBag;
+       }
+
+       //Create copy of bag2
+       BagInterface<T> second = new ResizableArrayBag<T>();
        T[] bag2Contents = bag2.toArray();
        for(int i = 0; i < bag2Contents.length; i++){
            second.add(bag2Contents[i]);
        }
 
-       //Check to see if bag1 or bag2 is empty
-       if(diffBag.isEmpty() || second.isEmpty()){
-           //if either bag is empty, the difference will also be empty
-           return diffBag;
-       } else{
-            //initalize element of bag2
-            T element = null;
+       //Initalize element of bag2
+       T element = null;
 
-            //Loop through all of bag2
-            for(int i = 0; i < bag2Contents.length; i++){
-                //copy current element of bag2
-                element = bag2Contents[i];
+       //Loop through contents of bag2
+       for(int i = 0; i < bag2Contents.length; i++) {
+           //Copy currently indexed element of bag2
+           element = bag2Contents[i];
 
-                //Check to see if bag1 contains element from bag 2
-                if(diffBag.contains(element)){
-                    //if yes, remove the element from bag1
-                    diffBag.remove(element);
-                }
-            }
-            return diffBag;
+           //Remove element from diffBag if possible
+           diffBag.remove(element);
        }
 
-       //(add?) possible check to see if bags are equivalent
+       //Return edited bag
+       return diffBag;
+
+       //(add?) possible check to see if bags are equivalent (only if it would decrease time complexity)
    }
 
 }
