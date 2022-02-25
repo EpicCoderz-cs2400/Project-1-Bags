@@ -172,13 +172,50 @@ public class LinkedBag<T> implements BagInterface<T> {
     }
 
     public BagInterface<T> difference(BagInterface<T> bag2){
-        return null;
         //Sanitize user input
+        
         //Prep return object
-        //Check for simpler cases of a bag being empty
-        //Make copy of bags
+        BagInterface<T> diffBag = new LinkedBag<T>();
+
+        //Check to see if bag 1 is empty
+        if (numberOfEntries == 0) {
+            return diffBag;
+        }
+
+        //Convert bag 1 to array to populate copy
+        T[] first = toArray();
+    
+        //Fill copy of bag 1 with first array
+        for (int i = 0; i < first.length; i++) {
+            diffBag.add(first[i]);
+        }
+
+        //Check to see if bag 2 is empty
+        if (bag2.isEmpty()) {
+            return diffBag;
+        }
+
+        //Convert bag 1 to array to populate copy
+        T[] bag2Contents = bag2.toArray();
+
+        //Create and copy bag 2 with bag2Contents array
+        BagInterface<T> second = new LinkedBag<T>();
+        for (int i = 0; i < bag2Contents.length; i++) {
+            second.add(bag2Contents[i]);
+        }
+
+        //Initalize element of bag 2
+        T element = null;
+
         //Loop through bag2
+        for (int i = 0; i < bag2Contents.length; i++) {
+            //Get currently indexed element of bag2
+            element = bag2Contents[i];
+
             //Try and remove each element of bag2 from bag 1 if possible
-        //Return difference bag
+            diffBag.remove(element);
+        }
+            
+        return diffBag;
     }
 }
