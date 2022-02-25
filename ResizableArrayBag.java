@@ -230,8 +230,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
         return intersectBag;
    }
 
-   public BagInterface<T> difference(BagInterface<T> bag2)
-   {
+   public BagInterface<T> difference(BagInterface<T> bag2){
        //Sanitize user input
        checkIntegrity();
 
@@ -242,32 +241,30 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
        //Create copy of collections
        BagInterface<T> second = new ResizableArrayBag<T>();
 
-       //return object starts as exact copy of instance bag
-       diffBag = this;
+       //Start return object as copy of bag1
+       for(int i = 0; i < numberOfEntries; i++){
+           diffBag.add(bag[i]);
+       }
 
-       //fill bag2
+       //Copy bag2
        T[] bag2Contents = bag2.toArray();
-
-       for(int i = 0; i < bag2Contents.length; i++)
-       {
+       for(int i = 0; i < bag2Contents.length; i++){
            second.add(bag2Contents[i]);
        }
 
        //Check to see if bag1 or bag2 is empty
-       if(diffBag.isEmpty() || second.isEmpty())
-       {
+       if(diffBag.isEmpty() || second.isEmpty()){
            //if either bag is empty, the difference will also be empty
            return diffBag;
-       }else
-       {
+       } else{
             //initalize element of bag2
             T element = null;
 
-            //Loop through all elements of bag2
-            for(int i = 0; i < bag2Contents.length; i++)
-            {
+            //Loop through all of bag2
+            for(int i = 0; i < bag2Contents.length; i++){
                 //copy current element of bag2
                 element = bag2Contents[i];
+
                 //Check to see if bag1 contains element from bag 2
                 if(diffBag.contains(element)){
                     //if yes, remove the element from bag1
