@@ -66,6 +66,8 @@ public class BagTesting {
         testAdd(aBag6, contentsofBag6);
         testIntersection(aBag5, aBag6);
         System.out.println("Intersection should have: A A B B G F Y");
+        testDifference(aBag5, aBag6);
+        System.out.println("Difference should have: Empty");
 
         //tests on two bags with same no similiar content for intersection 
         System.out.println("\nA new empty bag:");
@@ -79,7 +81,9 @@ public class BagTesting {
         String[] contentsofBag8 = {"Z", "Y", "W", "V", "U", "T", "S"};
         testAdd(aBag8, contentsofBag8);
         testIntersection(aBag7, aBag8);
-        System.out.println("Intersection should have: Empty"); 
+        System.out.println("Intersection should have: Empty");
+        testDifference(aBag7, aBag8);
+        System.out.println("Difference should have: A B C D E F G");
 
         //tests on two bags with same no content
         System.out.println("\nA new empty bag:");
@@ -92,8 +96,10 @@ public class BagTesting {
         BagInterface<String> aBag10 = new ResizableArrayBag<String>();
         String[] contentsofBag10 = {};
         testAdd(aBag10, contentsofBag10);
-        testIntersection(aBag9, aBag0);
-        System.out.println("Intersection should have: Empty"); 
+        testIntersection(aBag9, aBag0);//you used aBag0 and not aBag10
+        System.out.println("Intersection should have: Empty");
+        testDifference(aBag9, aBag10); 
+        System.out.println("Difference should have: Empty");
 
         //tests random two bags
         System.out.println("\nA new empty bag:");
@@ -109,6 +115,29 @@ public class BagTesting {
         testAdd(aBag14, contentsofBag14);
         testIntersection(aBag13, aBag14);
         System.out.println("Intersection should have: A A B");
+        testDifference(aBag13, aBag14);
+        System.out.println("Difference should have: C");
+
+        //Some more tests with difference
+        System.out.println("\nSome more test cases\n");
+        System.out.println("\nTest case when bag 1 is bigger than bag 2");
+        displayBag(aBag14);
+        displayBag(aBag13);
+        testDifference(aBag14, aBag13);
+        System.out.println("Difference should have: B B B B");
+
+
+        System.out.println("\nTest case when only bag 1 is empty");
+        displayBag(aBag10);
+        displayBag(aBag13);
+        testDifference(aBag10, aBag13);
+        System.out.println("Difference should have:");
+
+        System.out.println("\nTest case when only bag 2 is empty");
+        displayBag(aBag14);
+        displayBag(aBag10);
+        testDifference(aBag14, aBag10);
+        System.out.println("Difference should have: A A B B B B B");
 
     } // end main
     
