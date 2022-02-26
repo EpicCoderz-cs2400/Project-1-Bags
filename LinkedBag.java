@@ -1,5 +1,5 @@
 /*
-    Class of bags using linked nodes.
+    LinkedBag Class
 */
 public class LinkedBag<T> implements BagInterface<T> {
 
@@ -185,6 +185,5 @@ public class LinkedBag<T> implements BagInterface<T> {
         //return the new bag
         return intersectBag;
     }//end intersection
-
 
 }
