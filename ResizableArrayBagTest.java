@@ -5,7 +5,7 @@
     NOT COMPLETED (pretty sure they work though). 
 */
 
-public class BagTesting {
+public class ResizableArrayBagTest {
     public static void main(String[] args)
     {
         //creating empty array bags
@@ -49,6 +49,7 @@ public class BagTesting {
         testAdd(aBag4, contentsofBag4);
         testIntersection(aBag3, aBag4);
         System.out.println("Intersection should have: A A A B C");
+
         
         //tests on two bags with same content for intersection 
         System.out.println("\nA new empty bag:");
@@ -93,6 +94,20 @@ public class BagTesting {
         testIntersection(aBag9, aBag0);
         System.out.println("Intersection should have: Empty"); 
 
+        //tests on two bags with one containing null entry
+        System.out.println("\nA new empty bag:");
+        System.out.println("Two bags with no content");
+        System.out.println("");        
+
+        BagInterface<String> aBag70 = new ResizableArrayBag<String>();
+        String[] contentsofBag70 = {"A", "Y", "X", "U"};
+        testAdd(aBag70, contentsofBag70);
+        BagInterface<String> aBag71 = new ResizableArrayBag<String>();
+        String[] contentsofBag71 = {"F", "U"};
+        testAdd(aBag71, contentsofBag71);
+        testIntersection(aBag70, aBag71);
+        System.out.println("Intersection should have: U"); 
+
         //tests random two bags
         System.out.println("\nA new empty bag:");
         System.out.println("Two bags in likely client use");
@@ -107,6 +122,20 @@ public class BagTesting {
         testAdd(aBag14, contentsofBag14);
         testIntersection(aBag13, aBag14);
         System.out.println("Intersection should have: A A B");
+
+        //tests on two bags with same no similiar content for intersection 
+        System.out.println("\nA new empty bag:");
+        System.out.println("One RAB bag and one LinkedBag");
+        System.out.println("");        
+
+        BagInterface<String> aBag12 = new LinkedBag<>();
+        String[] contentsofBag12 = {"A", "B", "D", "D", "E", "F", "G"};
+        testAdd(aBag12, contentsofBag12);
+        BagInterface<String> aBag11 = new ResizableArrayBag<String>();
+        String[] contentsofBag11 = {"D", "Y", "D", "V", "U", "T", "G"};
+        testAdd(aBag11, contentsofBag11);
+        testIntersection(aBag11, aBag12);
+        System.out.println("Intersection should have: D D G");
 
     } // end main
     
@@ -160,7 +189,6 @@ public class BagTesting {
     private static void testIntersection(BagInterface<String> aBag, BagInterface<String> secondBag)
     {
         System.out.println("Using intersection with both bags: ");
-        aBag.intersection(secondBag);
         BagInterface<String> commonItems = aBag.intersection(secondBag);
         displayBag(commonItems);
     }
