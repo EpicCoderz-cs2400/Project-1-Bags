@@ -134,40 +134,84 @@ public class LinkedBag<T> implements BagInterface<T> {
 
         return result;
     }
- 
+    
     //private inner class
-    private class Node 
+    private class Node
     {
-        private T data;
-        private Node next;
-
+        private T data;    // Entry in bag
+        private Node next; // Link to next node
+   
         private Node(T dataPortion)
         {
             this(dataPortion, null);
-        }
-
+        } // end constructor
+   
         private Node(T dataPortion, Node nextNode)
         {
-            data = dataPortion;
-            next = nextNode;
-        }
-
+        data = dataPortion;
+        next = nextNode;
+        } // end constructor
+   
         private T getData()
         {
             return data;
-        }
-
+        } // end getData
+   
         private void setData(T newData)
         {
             data = newData;
-        }
-
+        } // end setData
+   
         private Node getNextNode()
         {
             return next;
-        }
-    }
-    public BagInterface<T> intersection(BagInterface<T> secondBag) {
-        return null;
-    }
+        } // end getNextNode
+   
+    } // end Node
+
+    public BagInterface<T> intersection(BagInterface<T> secondBag)
+    {
+        //prep the return object    
+        BagInterface<T> intersectBag = new LinkedBag<T>();
+  
+        //if either bags are empty, return empy intersect bag. (impossible to have intersecting entries)
+        if(isEmpty() || secondBag.isEmpty())
+            return intersectBag;
+         
+        //prepare copies of both bags
+        T[] contentsBag1 = toArray(); 
+        T[] contentsBag2 = secondBag.toArray();
+         
+        //use intersect bag as the copy for bag 1
+        for (int index = 0; index < getCurrentSize(); index++)
+        {
+            intersectBag.add(contentsBag1[index]);
+        } 
+         
+        //add entries to copy of bag2
+        BagInterface<T> cBag2 = new LinkedBag<T>();
+        for (int index = 0; index < contentsBag2.length; index++)
+        {
+            cBag2.add(contentsBag2[index]);
+        } 
+         
+        //while cbag2 isnt empty and the index is less than bag 1 array size, remove entries from intersect bag.  
+        int index =0;
+        while (index < contentsBag1.length && !cBag2.isEmpty())
+        {
+            T value = contentsBag1[index]; //gets entry at [index] in bag1 array
+ 
+            //remove the entry from intersect if bag2 does not contain it
+            if(!cBag2.contains(value))
+                intersectBag.remove(value);
+            //if both contain the value, keep value in intersect, but remove from bag 2 copy. 
+            else{
+                cBag2.remove(value);
+            }
+            index++;
+        } 
+        //return the new bag
+        return intersectBag;
+    }//end intersection
+
 }
