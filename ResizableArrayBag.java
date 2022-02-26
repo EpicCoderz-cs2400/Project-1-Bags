@@ -201,7 +201,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
         
         //while cbag2 isnt empty and the index is less than bag 1 array size, remove entries from intersect bag.  
         int index =0;
-        while (index < contentsBag1.length && !cBag2.isEmpty())
+        while (index < contentsBag1.length)
         {
             T value = contentsBag1[index]; //gets entry at [index] in bag1 array
 

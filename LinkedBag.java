@@ -3,170 +3,168 @@
 */
 public class LinkedBag<T> implements BagInterface<T> {
 
-    private Node firstNode;
+    private Node firstNode;       // Reference to first node
     private int numberOfEntries;
 
-    public LinkedBag()
-    {
+    /**
+     * Create an empty linked bag.
+     */
+    public LinkedBag() {
         firstNode = null;
-        numberOfEntries =0;
-    }
+        numberOfEntries = 0;
+    } // end default constructor
 
-    public boolean add(T newEntry) //adds new entry to the bag
-    {
+    public int getCurrentSize() {
+        return numberOfEntries;
+    } // end getCurrentSize
+
+    /**
+     * Add a new entry to this bag. 
+     */
+    public boolean add(T newEntry) {	      // OutOfMemoryError possible
+        // Add to beginning of chain:
         Node newNode = new Node(newEntry);
-        newNode.next = firstNode;
-
-        firstNode = newNode;
+        newNode.next = firstNode; // Make new node reference rest of chain
+        // (firstNode is null if chain is empty)
+        firstNode = newNode;      // New node is at beginning of chain
         numberOfEntries++;
 
         return true;
     } // end add
 
-    public T[] toArray() //Retrieves all entries in the bag and returns an array of them
-    {
+    /**
+     * Retrieve all entries that are in this bag.
+     */
+    public T[] toArray() {
+        // The cast is safe because the new array contains null entries
         @SuppressWarnings("unchecked")
-        T[] result = (T[])new Object[numberOfEntries];
-        
-        int index = 0;
+        T[] result = (T[])new Object[numberOfEntries]; // Unchecked cast
+
         Node currentNode = firstNode;
-        while ((index < numberOfEntries) && (currentNode != null))
-        {
-            result[index] = currentNode.getData();
-            index++;
-            currentNode = currentNode.getNextNode();
-        }
-        
+        for (int i = 0; i < result.length; ++i) {
+            result[i] = currentNode.data;
+            currentNode = currentNode.next;
+        } // end for
+
         return result;
-    }
+    } // end toArray
 
-	public int getFrequencyOf(T anEntry) //Returns the number of times an entry appears in the bag
-	{
-	  int frequency = 0;
+    /**
+     * Count the number of times a given entry appears in this bag.
+     */
+    public int getFrequencyOf(T anEntry) {
+        int frequency = 0;
 
-      int counter = 0;
-      Node currentNode =firstNode;
-      while ((counter < numberOfEntries) && (currentNode != null))
-      {
-         if (anEntry.equals(currentNode.getData()))
-         {
-            	frequency++;
-         } // end if
-         counter++;
-         currentNode = currentNode.getNextNode();
-     }// end while
-
-     return frequency;
-	} // end getFrequencyOf
-
-    public boolean isEmpty() //Tests whther this bag is empty
-	{
-     	return numberOfEntries == 0;
-	} // end isEmpty
-
-	public int getCurrentSize() //returns number of entries in the bag
-	{
-      	return numberOfEntries;
-	} // end getCurrentSize
-
-	public boolean remove(T anEntry) //removes one occuranve of given entry from the bag
-	{
-        boolean result = false;
-        Node nodeN = getReferenceTo(anEntry);
-
-        if(nodeN != null)
-        {
-
-            nodeN.setData(firstNode.getData());
-
-            firstNode = firstNode.getNextNode();
-            numberOfEntries--;
-            result = true;
-        }
-        return result;
-	} 
-
-    private Node getReferenceTo(T anEntry) //Locates a given entry in the bag
-    {
-        boolean found = false;
         Node currentNode = firstNode;
+        while (currentNode != null) {
+            if (currentNode.data.equals(anEntry)) {
+                frequency++;
+            } // end if
 
-        while (!found && (currentNode != null));
-        {
-            if(anEntry.equals(currentNode.getData()))
-                found = true;
-            else
-            currentNode = currentNode.getNextNode(); 
-        }
-        return currentNode;
-    } 
+            currentNode = currentNode.next;
+        } // end while
 
-	public void clear() //Removes all entries from bag
-	{
-      while (!isEmpty())
-         	remove();
-	} // end clear
+        return frequency;
+    } // end getFrequencyOf
 
-    public boolean contains(T anEntry) //Tests whether bag contains given entry
-    {
-        boolean found = false;
+    /** 
+     * Test whether this bag contains a given entry.
+     */
+    public boolean contains(T anEntry) {
         Node currentNode = firstNode;
+        while (currentNode != null) {
+            if (currentNode.data.equals(anEntry)) {
+                return true;
+            }
+            currentNode = currentNode.next;
+        } // end while
 
-        while (!found && (currentNode != null))
-        {
-            if (anEntry.equals(currentNode.getData()))
-                found = true;
-            else
-                currentNode = currentNode.getNextNode();
-        }
-        return found;
+        return false;
     } // end contains
-    
-    public T remove() { //removes one unspecified entry from the bag
-        
+
+    /**
+     * Remove one unspecified entry from this bag, if possible.. */
+    public T remove() {
         T result = null;
-        if (firstNode != null)
-        {
-            result = firstNode.getData();
-            firstNode = firstNode.getNextNode();
-            numberOfEntries--;
-        }
+        if (firstNode != null) {
+            result = remove(firstNode);
+        } // end if
+
+        return result;
+    } // end remove
+
+    /**
+     * Remove one occurrence of a given entry from this bag, if possible. 
+     */
+    public boolean remove(T anEntry) {
+        boolean result = false;
+        Node nodeN = findNode(anEntry);
+
+        if (nodeN != null) {
+            remove(nodeN);
+            result = true;
+        } // end if
+
+        return result;
+    } // end remove
+
+    private Node findNode(T anEntry) {
+        Node currentNode = firstNode;
+        while (currentNode != null) {
+            if (currentNode.data.equals(anEntry)) {
+                return currentNode;
+            }
+            currentNode = currentNode.next;
+        } // end while
+
+        return null;
+    } // end findNode
+
+    public boolean isEmpty() {
+        
+        return numberOfEntries ==0;
+    }
+
+    public void clear() {
+        while(!isEmpty())
+            remove();
+        
+    }
+
+    /**
+     * Remove the given node's data from this bag.
+     */
+    private T remove(Node n) {
+        T result = n.data;
+
+        n.data = firstNode.data;
+        firstNode = firstNode.next;
+        numberOfEntries--;
 
         return result;
     }
-    
-    //private inner class
-    private class Node
-    {
-        private T data;    // Entry in bag
+
+    /**
+     * A class to hold the data in a linked structure.
+     */
+    private class Node {
+        private T    data; // Entry in bag
         private Node next; // Link to next node
-   
-        private Node(T dataPortion)
-        {
+
+        /**
+         * Create an unlinked node holding the given data.
+         */
+        private Node(T dataPortion) {
             this(dataPortion, null);
         } // end constructor
-   
-        private Node(T dataPortion, Node nextNode)
-        {
-        data = dataPortion;
-        next = nextNode;
+
+        /**
+         * Create a linked node holding the given data.
+         */
+        private Node(T dataPortion, Node nextNode) {
+            data = dataPortion;
+            next = nextNode;
         } // end constructor
-   
-        private T getData()
-        {
-            return data;
-        } // end getData
-   
-        private void setData(T newData)
-        {
-            data = newData;
-        } // end setData
-   
-        private Node getNextNode()
-        {
-            return next;
-        } // end getNextNode
-   
     } // end Node
 
     public BagInterface<T> intersection(BagInterface<T> secondBag)
@@ -195,17 +193,16 @@ public class LinkedBag<T> implements BagInterface<T> {
             cBag2.add(contentsBag2[index]);
         } 
          
-        //while cbag2 isnt empty and the index is less than bag 1 array size, remove entries from intersect bag.  
+        //while cbag2 isnt empty and the index is less than bag 1 array size, remove entries from intersect bag and cBag2.  
         int index =0;
-        while (index < contentsBag1.length && !cBag2.isEmpty())
+        while (index < contentsBag1.length)
         {
             T value = contentsBag1[index]; //gets entry at [index] in bag1 array
  
             //remove the entry from intersect if bag2 does not contain it
             if(!cBag2.contains(value))
-                intersectBag.remove(value);
-            //if both contain the value, keep value in intersect, but remove from bag 2 copy. 
-            else{
+                intersectBag.remove(value); 
+            else{//remove the entry from bag 2 copy
                 cBag2.remove(value);
             }
             index++;
@@ -213,5 +210,6 @@ public class LinkedBag<T> implements BagInterface<T> {
         //return the new bag
         return intersectBag;
     }//end intersection
+
 
 }

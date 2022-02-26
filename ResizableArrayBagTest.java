@@ -123,6 +123,20 @@ public class ResizableArrayBagTest {
         testIntersection(aBag13, aBag14);
         System.out.println("Intersection should have: A A B");
 
+        //tests on two bags with same no similiar content for intersection 
+        System.out.println("\nA new empty bag:");
+        System.out.println("One RAB bag and one LinkedBag");
+        System.out.println("");        
+
+        BagInterface<String> aBag12 = new LinkedBag<>();
+        String[] contentsofBag12 = {"A", "B", "D", "D", "E", "F", "G"};
+        testAdd(aBag12, contentsofBag12);
+        BagInterface<String> aBag11 = new ResizableArrayBag<String>();
+        String[] contentsofBag11 = {"D", "Y", "D", "V", "U", "T", "G"};
+        testAdd(aBag11, contentsofBag11);
+        testIntersection(aBag11, aBag12);
+        System.out.println("Intersection should have: D D G");
+
     } // end main
     
     // Tests the method add.

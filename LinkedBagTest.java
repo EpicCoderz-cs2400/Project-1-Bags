@@ -24,18 +24,30 @@
       testIntersection(aBag1, aBag4);
       System.out.println("Intersection should have: A A A B C");
 
-      /*//tests on two bags for intersection 
+      //tests on two bags for intersection 
       System.out.println("\nCreating an empty LinkedBag.");
       System.out.println("Testing intersection on two normal bags");
-      BagInterface<String> aBag1 = new LinkedBag<String>();
-      String[] contentsofBag1 = {"A", "F", "d", "E", "e", "A", "Y"};
-      testAdd(aBag1, contentsofBag1);
-      BagInterface<String> aBag2 = new LinkedBag<String>();
-      String[] contentsofBag2 = {"B", "e", "Y"};
-      testAdd(aBag2, contentsofBag2);
-      testIntersection(aBag1, aBag2);
-      System.out.println("Intersection should have: e Y");
-      */
+      BagInterface<String> aBag11 = new LinkedBag<String>();
+      String[] contentsofBag11 = {"d", "d", "d", "E", "e", "A", "Y"};
+      testAdd(aBag11, contentsofBag11);
+      BagInterface<String> aBag12 = new LinkedBag<String>();
+      String[] contentsofBag12 = {"d", "E", "Y"};
+      testAdd(aBag12, contentsofBag12);
+      testIntersection(aBag11, aBag12);
+      System.out.println("Intersection should have: d E Y");
+
+      //tests on two bags for intersection with one being empty
+      System.out.println("\nCreating an empty LinkedBag.");
+      System.out.println("Testing intersection on two normal bags");
+      BagInterface<String> aBag8 = new LinkedBag<String>();
+      String[] contentsofBag8 = {"d", "d", "d", "E", "e", "A", "Y"};
+      testAdd(aBag8, contentsofBag8);
+      BagInterface<String> aBag9 = new LinkedBag<String>();
+      String[] contentsofBag9 = {};
+      testAdd(aBag9, contentsofBag9);
+      testIntersection(aBag8, aBag9);
+      System.out.println("Intersection should have: empty");
+      
 
 
       /*System.out.println("\nCreating an empty LinkedBag.");
