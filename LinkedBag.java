@@ -6,10 +6,7 @@ public class LinkedBag<T> implements BagInterface<T> {
     private Node firstNode;       // Reference to first node
     private int numberOfEntries;
 
-    /**
-     * Create an empty linked bag.
-     */
-    public LinkedBag() {
+    public LinkedBag() { //Create an empty linked bag.
         firstNode = null;
         numberOfEntries = 0;
     } // end default constructor
@@ -18,10 +15,7 @@ public class LinkedBag<T> implements BagInterface<T> {
         return numberOfEntries;
     } // end getCurrentSize
 
-    /**
-     * Add a new entry to this bag. 
-     */
-    public boolean add(T newEntry) {	      // OutOfMemoryError possible
+    public boolean add(T newEntry) { //Add a new entry to this bag.	      
         // Add to beginning of chain:
         Node newNode = new Node(newEntry);
         newNode.next = firstNode; // Make new node reference rest of chain
@@ -31,11 +25,8 @@ public class LinkedBag<T> implements BagInterface<T> {
 
         return true;
     } // end add
-
-    /**
-     * Retrieve all entries that are in this bag.
-     */
-    public T[] toArray() {
+     
+    public T[] toArray() { //Retrieve all entries that are in this bag.
         // The cast is safe because the new array contains null entries
         @SuppressWarnings("unchecked")
         T[] result = (T[])new Object[numberOfEntries]; // Unchecked cast
@@ -49,10 +40,7 @@ public class LinkedBag<T> implements BagInterface<T> {
         return result;
     } // end toArray
 
-    /**
-     * Count the number of times a given entry appears in this bag.
-     */
-    public int getFrequencyOf(T anEntry) {
+    public int getFrequencyOf(T anEntry) {  //Count the number of times a given entry appears in this bag.
         int frequency = 0;
 
         Node currentNode = firstNode;
@@ -67,10 +55,7 @@ public class LinkedBag<T> implements BagInterface<T> {
         return frequency;
     } // end getFrequencyOf
 
-    /** 
-     * Test whether this bag contains a given entry.
-     */
-    public boolean contains(T anEntry) {
+    public boolean contains(T anEntry) { //Test whether this bag contains a given entry.
         Node currentNode = firstNode;
         while (currentNode != null) {
             if (currentNode.data.equals(anEntry)) {
@@ -82,9 +67,7 @@ public class LinkedBag<T> implements BagInterface<T> {
         return false;
     } // end contains
 
-    /**
-     * Remove one unspecified entry from this bag, if possible.. */
-    public T remove() {
+    public T remove() { //Remove one unspecified entry from this bag, if possible
         T result = null;
         if (firstNode != null) {
             result = remove(firstNode);
@@ -93,10 +76,7 @@ public class LinkedBag<T> implements BagInterface<T> {
         return result;
     } // end remove
 
-    /**
-     * Remove one occurrence of a given entry from this bag, if possible. 
-     */
-    public boolean remove(T anEntry) {
+    public boolean remove(T anEntry) { //Remove one occurrence of a given entry from this bag, if possible.
         boolean result = false;
         Node nodeN = findNode(anEntry);
 
@@ -120,21 +100,18 @@ public class LinkedBag<T> implements BagInterface<T> {
         return null;
     } // end findNode
 
-    public boolean isEmpty() {
+    public boolean isEmpty() { //check if bag is Empty
         
         return numberOfEntries ==0;
     }
 
-    public void clear() {
+    public void clear() { //clear all entries 
         while(!isEmpty())
             remove();
         
     }
 
-    /**
-     * Remove the given node's data from this bag.
-     */
-    private T remove(Node n) {
+    private T remove(Node n) { //Remove the given node's data from this bag.
         T result = n.data;
 
         n.data = firstNode.data;
@@ -144,9 +121,7 @@ public class LinkedBag<T> implements BagInterface<T> {
         return result;
     }
 
-    /**
-     * A class to hold the data in a linked structure.
-     */
+    //A class to hold the data in a linked structure.
     private class Node {
         private T    data; // Entry in bag
         private Node next; // Link to next node
