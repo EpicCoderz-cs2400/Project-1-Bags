@@ -1,17 +1,14 @@
 /*
-    This Class checking to make sure all the inital methods in LinkedBag and Resizable ArryBag work properly (testing purpuses). 
+    This Class checking to make sure all the inital methods Resizable ArryBag work properly (testing purposes). 
     This is not the drive class or client program. The bags will be tested using Strings.
-    
-    NOT COMPLETED (pretty sure they work though). 
+    NOT COMPLETED 
 */
 
 public class ResizableArrayBagTest {
     public static void main(String[] args)
     {
-        //creating empty array bags
+        // tests if IsEmpty is true with an empty bag
         BagInterface<String> aBag0 = new ResizableArrayBag<String>();
-
-        // tests if IsEmpty is true with an empty bag 
         testIsEmpty(aBag0, true);
 
         // Tests if add works with Strings
@@ -21,26 +18,19 @@ public class ResizableArrayBagTest {
         //tests if IsEmpty is false with a non-empty bag
         testIsEmpty(aBag0, false); 
 
-        // tests array bag that will be full
+        // tests array adding to a bag that is full
         aBag0 = new ResizableArrayBag<String> (7);
         System.out.println("\nA new empty bag:");
-        
-        // tests on an empty bag
         testIsEmpty(aBag0, true);
-
-        // adding strings
         String[] contentsofBag2 = {"A", "B", "A", "C", "B", "C", "D"};
         testAdd(aBag0, contentsofBag2);
         testIsEmpty(aBag0, false);
-
-        //tests if adding to a full array works 
         System.out.print("Testing Full Array bag: ");
-        String[] extracontents = {"Z", "Z"};
+        String[] extracontents = {"Z", "Z", "Z"};
         testAdd(aBag0, extracontents);
 
-        System.out.println("\nA new empty bag:");
-
-        //tests on two bags for intersection 
+        //tests on two new bags for 
+        System.out.println("\nA new Test:");
         BagInterface<String> aBag3 = new ResizableArrayBag<String>();
         String[] contentsofBag3 = {"A", "A", "B", "A", "C", "A", "Y"};
         testAdd(aBag3, contentsofBag3);
@@ -49,14 +39,13 @@ public class ResizableArrayBagTest {
         testAdd(aBag4, contentsofBag4);
         testIntersection(aBag3, aBag4);
         System.out.println("Intersection should have: A A A B C");
+        testUnion(aBag3, aBag4);
+        System.out.println("Union should have A A B A C A Y A B A C A F E");
 
         
-        //tests on two bags with same content for intersection 
-        System.out.println("\nA new empty bag:");
-        System.out.println("Two bags with exact same content");
-        System.out.println("");
-
-        
+        //tests on two bags with same entries 
+        System.out.println("\nA new Test:");
+        System.out.println("Two bags with exact same entries");
         BagInterface<String> aBag5 = new ResizableArrayBag<String>();
         String[] contentsofBag5 = {"A", "A", "B", "B", "G", "F", "Y"};
         testAdd(aBag5, contentsofBag5);
@@ -65,12 +54,13 @@ public class ResizableArrayBagTest {
         testAdd(aBag6, contentsofBag6);
         testIntersection(aBag5, aBag6);
         System.out.println("Intersection should have: A A B B G F Y");
+        testUnion(aBag5, aBag6);
+        System.out.println("Union should have A A B B G F Y A A B B G F Y");
 
         //tests on two bags with same no similiar content for intersection 
-        System.out.println("\nA new empty bag:");
-        System.out.println("Two bags with exact same content");
+        System.out.println("\nA new Test:");
+        System.out.println("Two bags with exact no similiar entries");
         System.out.println("");        
-
         BagInterface<String> aBag7 = new ResizableArrayBag<String>();
         String[] contentsofBag7 = {"A", "B", "C", "D", "E", "F", "G"};
         testAdd(aBag7, contentsofBag7);
@@ -78,27 +68,45 @@ public class ResizableArrayBagTest {
         String[] contentsofBag8 = {"Z", "Y", "W", "V", "U", "T", "S"};
         testAdd(aBag8, contentsofBag8);
         testIntersection(aBag7, aBag8);
-        System.out.println("Intersection should have: Empty"); 
+        System.out.println("Intersection should have: Empty");
+        testUnion(aBag7, aBag8);
+        System.out.println("Union should have A B C D E F G Z Y W V U T S");
 
-        //tests on two bags with same no content
-        System.out.println("\nA new empty bag:");
-        System.out.println("Two bags with no content");
+        //tests on two bags empty bags
+        System.out.println("\nA new Test:");
+        System.out.println("Two bags with no entries");
         System.out.println("");        
-
         BagInterface<String> aBag9 = new ResizableArrayBag<String>();
-        String[] contentsofBag9 = {};
-        testAdd(aBag9, contentsofBag9);
         BagInterface<String> aBag10 = new ResizableArrayBag<String>();
-        String[] contentsofBag10 = {};
-        testAdd(aBag10, contentsofBag10);
-        testIntersection(aBag9, aBag0);
-        System.out.println("Intersection should have: Empty"); 
+        testIntersection(aBag9, aBag10);
+        System.out.println("Intersection should have: Empty");
+        testUnion(aBag9, aBag10);
+        System.out.println("Union should have Empty");
 
-        //tests on two bags with one containing null entry
-        System.out.println("\nA new empty bag:");
-        System.out.println("Two bags with no content");
+        //tests on two bags. Bag 1 is empty. Bag 2 is not
+        System.out.println("\nA new Test:");
+        System.out.println("Two bags. Bag 1 is empty. Bag 2 is not");
         System.out.println("");        
+        String[] contentsofBag10 = {"A", "L", "M", "G", "G"};
+        testAdd(aBag10, contentsofBag10);
+        testIntersection(aBag9, aBag10);
+        System.out.println("Intersection should have: Empty");
+        testUnion(aBag9, aBag10);
+        System.out.println("Union should have: A L M G G");
 
+        //tests on two bags. Bag 1 is not empty. Bag 2 is.
+        System.out.println("\nA new Test:");
+        System.out.println("Two bags. Bag 1 is not empty. Bag 2 is.");
+        System.out.println("");        
+        testIntersection(aBag10, aBag9);
+        System.out.println("Intersection should have: Empty");
+        testUnion(aBag10, aBag9);
+        System.out.println("Union should have: A L M G G");    
+
+        //tests on two bags. Bag 1 is bigger than bag 2
+        System.out.println("\nA new Test:");
+        System.out.println("Two bags. Bag 1 is bigger than bag 2");
+        System.out.println("");        
         BagInterface<String> aBag70 = new ResizableArrayBag<String>();
         String[] contentsofBag70 = {"A", "Y", "X", "U"};
         testAdd(aBag70, contentsofBag70);
@@ -107,13 +115,13 @@ public class ResizableArrayBagTest {
         testAdd(aBag71, contentsofBag71);
         testIntersection(aBag70, aBag71);
         System.out.println("Intersection should have: U"); 
+        testUnion(aBag70, aBag71);
+        System.out.println("Union should have A Y X U F U");
 
-        //tests random two bags
-        System.out.println("\nA new empty bag:");
-        System.out.println("Two bags in likely client use");
+        //tests on two bags. Bag 1 is smaller than Bag 2
+        System.out.println("\nA new Test:");
+        System.out.println("Two bags. Bag 1 is smaller than Bag 2");
         System.out.println("");
-
-        
         BagInterface<String> aBag13 = new ResizableArrayBag<String>();
         String[] contentsofBag13 = {"A", "A", "B", "C"};
         testAdd(aBag13, contentsofBag13);
@@ -122,12 +130,13 @@ public class ResizableArrayBagTest {
         testAdd(aBag14, contentsofBag14);
         testIntersection(aBag13, aBag14);
         System.out.println("Intersection should have: A A B");
+        testUnion(aBag13, aBag14);
+        System.out.println("Union should have A A B C A A B B B B B");
 
-        //tests on two bags with same no similiar content for intersection 
-        System.out.println("\nA new empty bag:");
+        //tests on two bags. One RAB and one Linked.
+        System.out.println("\nA new Test:");
         System.out.println("One RAB bag and one LinkedBag");
         System.out.println("");        
-
         BagInterface<String> aBag12 = new LinkedBag<>();
         String[] contentsofBag12 = {"A", "B", "D", "D", "E", "F", "G"};
         testAdd(aBag12, contentsofBag12);
@@ -136,6 +145,10 @@ public class ResizableArrayBagTest {
         testAdd(aBag11, contentsofBag11);
         testIntersection(aBag11, aBag12);
         System.out.println("Intersection should have: D D G");
+        testUnion(aBag11, aBag12);
+        System.out.println("Union should have D Y D V U T G G F E D D B A");
+
+        //add better tests
 
     } // end main
     
@@ -191,5 +204,13 @@ public class ResizableArrayBagTest {
         System.out.println("Using intersection with both bags: ");
         BagInterface<String> commonItems = aBag.intersection(secondBag);
         displayBag(commonItems);
+    }
+
+    //tests the union method
+    private static void testUnion(BagInterface<String> aBag, BagInterface<String> aBag2)
+    {
+        System.out.println("Using union with both bags: ");
+        BagInterface<String> allItems = aBag.union(aBag2);
+        displayBag(allItems);
     }
 }

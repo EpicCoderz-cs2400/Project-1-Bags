@@ -186,4 +186,30 @@ public class LinkedBag<T> implements BagInterface<T> {
         return intersectBag;
     }//end intersection
 
+    public BagInterface<T> union(BagInterface<T> bag2)
+    {
+        //prep return object
+        BagInterface<T> unionBag = new ResizableArrayBag<T>();
+        //return if
+        if(isEmpty() && bag2.isEmpty())
+            return unionBag;
+        if(!isEmpty() && bag2.isEmpty())
+            return this;
+        if(isEmpty() && !bag2.isEmpty())
+            return bag2;
+        else{
+            //add objects in bag 2 to new bag
+            T[] contentsBag1 = toArray();
+            for(int i =0; i < getCurrentSize(); i++){
+                unionBag.add(contentsBag1[i]);
+            }
+            T[] contentsBag2 = bag2.toArray();
+            for(int i =0; i < contentsBag2.length; i++){
+                unionBag.add(contentsBag2[i]);
+            }
+            //return new bag
+            return unionBag; 
+        }
+    }
+
 }

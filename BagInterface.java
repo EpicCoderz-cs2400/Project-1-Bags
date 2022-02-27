@@ -42,5 +42,8 @@ public interface BagInterface<T>
 
 	/** Creates a new collection consisting of the entries that occur in both collections. Returns a new bag. */
 	public BagInterface<T> intersection(BagInterface<T> secondBag);
+
+	/** The union of two collections consists of their contents combined into a new collection  */
+	public BagInterface<T> union(BagInterface<T> bag2);
     
 } // end BagInterface
