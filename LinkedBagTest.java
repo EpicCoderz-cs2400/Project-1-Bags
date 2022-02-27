@@ -35,6 +35,8 @@
       testAdd(aBag12, contentsofBag12);
       testIntersection(aBag11, aBag12);
       System.out.println("Intersection should have: d E Y");
+      testUnion(aBag11, aBag12);
+      System.out.println("Union should have: Y A e E d d d Y E d");
 
       //tests on two bags for intersection with one being empty
       System.out.println("\nCreating an empty LinkedBag.");
@@ -47,10 +49,10 @@
       testAdd(aBag9, contentsofBag9);
       testIntersection(aBag8, aBag9);
       System.out.println("Intersection should have: empty");
-      
+      testUnion(aBag8, aBag9);
+      System.out.println("Union should have: d d d E e A Y");
 
-
-      /*System.out.println("\nCreating an empty LinkedBag.");
+      System.out.println("\nCreating an empty LinkedBag.");
       System.out.println("Testing intersection with one empty bag");
       BagInterface<String> aBag5 = new LinkedBag<String>();
       String[] contentsofBag5 = {""};
@@ -59,12 +61,16 @@
       String[] contentsofBag6 = {"A", "B", "A", "C", "A", "F", "E"};
       testAdd(aBag6, contentsofBag6);
       testIntersection(aBag6, aBag5);
-      System.out.println("Intersection should be null");*/
+      System.out.println("Intersection should be null");
+      testUnion(aBag6, aBag5);
+      System.out.println("Union should have: A B A C A F E");
 	} // end main
    
-   // Tests the method isEmpty.
-   // Precondition: If the bag is empty, the parameter empty should be true;
-   // otherwise, it should be false.
+   /**
+    * Method testIsEmpty checks.
+    * @param bag 
+    * @param empty
+    */
 	private static void testIsEmpty(BagInterface<String> bag, boolean empty)
    {
       System.out.print("\nTesting isEmpty with ");
@@ -114,11 +120,20 @@
       System.out.println();
    } // end displayBag
 
+   //tests the intersection method
    private static void testIntersection(BagInterface<String> aBag, BagInterface<String> secondBag)
    {
        System.out.print("After intersection ");
        BagInterface<String> commonItems = aBag.intersection(secondBag);
        displayBag(commonItems);
+   }
+
+   //tests the union method
+   private static void testUnion(BagInterface<String> aBag, BagInterface<String> aBag2)
+   {
+       System.out.println("Using union with both bags: ");
+       BagInterface<String> allItems = aBag.union(aBag2);
+       displayBag(allItems);
    }
 
 }

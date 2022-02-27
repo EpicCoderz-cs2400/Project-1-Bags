@@ -163,12 +163,39 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
             throw new IllegalStateException("Attempt to create a bag whose capacity exeeds allowed maximum of " + MAX_CAPACITY);
     } // end checkCapacity
       
-   private void doubleCapacity() // Doubles the size of the array bag.
-   {
-      int newLength = 2 * bag.length;
-      checkCapacity(newLength);
-      bag = Arrays.copyOf(bag, newLength);
-   } // end doubleCapacity
+    private void doubleCapacity() // Doubles the size of the array bag.
+    {
+        int newLength = 2 * bag.length;
+        checkCapacity(newLength);
+        bag = Arrays.copyOf(bag, newLength);
+    } // end doubleCapacity
+
+    public BagInterface<T> union(BagInterface<T> bag2)
+    {
+        //sanitize user input 
+        checkIntegrity();
+        //prep return object
+        BagInterface<T> unionBag = new ResizableArrayBag<T>();
+
+        if(isEmpty() && bag2.isEmpty()) //returns empty bag if both bags are empty
+            return unionBag;
+        if(!isEmpty() && bag2.isEmpty()) //If only one bag contains entries, returns that bag
+            return this;
+        if(isEmpty() && !bag2.isEmpty()) //If only one bag contains entries, returns that bag
+            return bag2;
+        else 
+            //add entries in bag 2 to new bag
+            for(int i =0; i < getCurrentSize(); i++){
+                unionBag.add(bag[i]);
+            }
+            //create an array to copy bag 2 contents
+            T[] contentsBag2 = bag2.toArray();
+            for(int i =0; i < contentsBag2.length; i++){
+                unionBag.add(contentsBag2[i]); //add entries to union bag
+            }
+            //return union bag
+            return unionBag; 
+    }
 
    public BagInterface<T> intersection(BagInterface<T> secondBag)
    {
