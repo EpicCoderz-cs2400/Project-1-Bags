@@ -39,6 +39,13 @@ public class ResizableArrayBagTest {
         testAdd(aBag4, contentsofBag4);
         testIntersection(aBag3, aBag4);
         System.out.println("Intersection should have: A A A B C");
+        testDifference(aBag3, aBag4);
+        System.out.println("Difference should have: A Y");
+        
+        //tests on two bags with same content for intersection 
+        System.out.println("\nA new empty bag:");
+        System.out.println("Two bags with exact same content");
+        System.out.println("");
         testUnion(aBag3, aBag4);
         System.out.println("Union should have A A B A C A Y A B A C A F E");
 
@@ -54,8 +61,8 @@ public class ResizableArrayBagTest {
         testAdd(aBag6, contentsofBag6);
         testIntersection(aBag5, aBag6);
         System.out.println("Intersection should have: A A B B G F Y");
-        testUnion(aBag5, aBag6);
-        System.out.println("Union should have A A B B G F Y A A B B G F Y");
+        testDifference(aBag5, aBag6);
+        System.out.println("Difference should have: Empty");
 
         //tests on two bags with same no similiar content for intersection 
         System.out.println("\nA new Test:");
@@ -69,6 +76,8 @@ public class ResizableArrayBagTest {
         testAdd(aBag8, contentsofBag8);
         testIntersection(aBag7, aBag8);
         System.out.println("Intersection should have: Empty");
+        testDifference(aBag7, aBag8);
+        System.out.println("Difference should have: A B C D E F G");
         testUnion(aBag7, aBag8);
         System.out.println("Union should have A B C D E F G Z Y W V U T S");
 
@@ -89,6 +98,10 @@ public class ResizableArrayBagTest {
         System.out.println("");        
         String[] contentsofBag10 = {"A", "L", "M", "G", "G"};
         testAdd(aBag10, contentsofBag10);
+        testIntersection(aBag9, aBag0);//you used aBag0 and not aBag10
+        System.out.println("Intersection should have: Empty");
+        testDifference(aBag9, aBag10); 
+        System.out.println("Difference should have: Empty");
         testIntersection(aBag9, aBag10);
         System.out.println("Intersection should have: Empty");
         testUnion(aBag9, aBag10);
@@ -130,6 +143,29 @@ public class ResizableArrayBagTest {
         testAdd(aBag14, contentsofBag14);
         testIntersection(aBag13, aBag14);
         System.out.println("Intersection should have: A A B");
+        testDifference(aBag13, aBag14);
+        System.out.println("Difference should have: C");
+
+        //Some more tests with difference
+        System.out.println("\nSome more test cases\n");
+        System.out.println("\nTest case when bag 1 is bigger than bag 2");
+        displayBag(aBag14);
+        displayBag(aBag13);
+        testDifference(aBag14, aBag13);
+        System.out.println("Difference should have: B B B B");
+
+
+        System.out.println("\nTest case when only bag 1 is empty");
+        displayBag(aBag10);
+        displayBag(aBag13);
+        testDifference(aBag10, aBag13);
+        System.out.println("Difference should have:");
+
+        System.out.println("\nTest case when only bag 2 is empty");
+        displayBag(aBag14);
+        displayBag(aBag10);
+        testDifference(aBag14, aBag10);
+        System.out.println("Difference should have: A A B B B B B");
         testUnion(aBag13, aBag14);
         System.out.println("Union should have A A B C A A B B B B B");
 
@@ -206,6 +242,15 @@ public class ResizableArrayBagTest {
         displayBag(commonItems);
     }
 
+    //Tests the difference method
+    private static void testDifference(BagInterface<String> bag1, BagInterface<String> bag2)
+    {
+        System.out.println("Using difference with both bags: ");
+        bag1.difference(bag2);
+        BagInterface<String> uniqueItems = bag1.difference(bag2);
+        displayBag(uniqueItems);
+    }
+    
     //tests the union method
     private static void testUnion(BagInterface<String> aBag, BagInterface<String> aBag2)
     {

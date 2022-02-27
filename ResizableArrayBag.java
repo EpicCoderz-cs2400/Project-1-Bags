@@ -245,4 +245,47 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
         return intersectBag;
    }
 
+   public BagInterface<T> difference(BagInterface<T> bag2)
+   {
+       //Sanitize user input
+       checkIntegrity();
+
+       //Prep return object
+       BagInterface<T> diffBag = new ResizableArrayBag<T>();
+
+       //Check to see if bag 1 is empty
+       if(numberOfEntries == 0) {
+           return diffBag;
+       }
+
+       //Start return object as copy of bag1
+       for(int i = 0; i < numberOfEntries; i++){
+           diffBag.add(bag[i]);
+       }
+
+       //Check to see if bag 2 is empty
+       if(bag2.isEmpty()) {
+           //return copied bag
+           return diffBag;
+       }
+
+       //Convert bag 2 to an array
+       T[] bag2Contents = bag2.toArray();
+
+       //Initalize element of bag2
+       T element = null;
+
+       //Loop through contents of bag2
+       for(int i = 0; i < bag2Contents.length; i++) {
+           //Copy currently indexed element of bag2
+           element = bag2Contents[i];
+
+           //Remove element from diffBag if possible
+           diffBag.remove(element);
+       }
+
+       //Return edited bag
+       return diffBag;
+   }
+
 }
