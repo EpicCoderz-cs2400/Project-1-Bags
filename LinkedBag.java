@@ -213,8 +213,6 @@ public class LinkedBag<T> implements BagInterface<T> {
     }
 
     public BagInterface<T> difference(BagInterface<T> bag2){
-        //Sanitize user input
-        
         //Prep return object
         BagInterface<T> diffBag = new LinkedBag<T>();
 

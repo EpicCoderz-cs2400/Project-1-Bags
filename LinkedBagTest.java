@@ -23,6 +23,8 @@
       testAdd(aBag4, contentsofBag4);
       testIntersection(aBag1, aBag4);
       System.out.println("Intersection should have: A A A B C");
+      testDifference(aBag1, aBag4);
+      System.out.println("Difference should have: A Y");
 
       //tests on two bags for intersection 
       System.out.println("\nCreating an empty LinkedBag.");
@@ -37,6 +39,8 @@
       System.out.println("Intersection should have: d E Y");
       testUnion(aBag11, aBag12);
       System.out.println("Union should have: Y A e E d d d Y E d");
+      testDifference(aBag11, aBag12);
+      System.out.println("Difference should have: d d e A");
 
       //tests on two bags for intersection with one being empty
       System.out.println("\nCreating an empty LinkedBag.");
@@ -134,6 +138,14 @@
        System.out.println("Using union with both bags: ");
        BagInterface<String> allItems = aBag.union(aBag2);
        displayBag(allItems);
+   }
+
+   //Tests the difference method
+   private static void testDifference(BagInterface<String> bag1, BagInterface<String> bag2)
+   {
+      System.out.println("Using difference with both bags: ");
+      BagInterface<String> uniqueItems = bag1.difference(bag2);
+      displayBag(uniqueItems);
    }
 
 }
