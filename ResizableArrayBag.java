@@ -163,74 +163,90 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
             throw new IllegalStateException("Attempt to create a bag whose capacity exeeds allowed maximum of " + MAX_CAPACITY);
     } // end checkCapacity
       
-   private void doubleCapacity() // Doubles the size of the array bag.
-   {
-      int newLength = 2 * bag.length;
-      checkCapacity(newLength);
-      bag = Arrays.copyOf(bag, newLength);
-   } // end doubleCapacity
+    private void doubleCapacity() // Doubles the size of the array bag.
+    {
+        int newLength = 2 * bag.length;
+        checkCapacity(newLength);
+        bag = Arrays.copyOf(bag, newLength);
+    } // end doubleCapacity
+
+    public BagInterface<T> union(BagInterface<T> bag2)
+    {
+        //sanitize user input 
+        checkIntegrity();
+        //prep return object
+        BagInterface<T> unionBag = new ResizableArrayBag<T>();
+
+        if(isEmpty() && bag2.isEmpty()) //returns empty bag if both bags are empty
+            return unionBag;
+        if(!isEmpty() && bag2.isEmpty()) //If only one bag contains entries, returns that bag
+            return this;
+        if(isEmpty() && !bag2.isEmpty()) //If only one bag contains entries, returns that bag
+            return bag2;
+        else 
+            //add entries in bag 2 to new bag
+            for(int i =0; i < getCurrentSize(); i++){
+                unionBag.add(bag[i]);
+            }
+            //create an array to copy bag 2 contents
+            T[] contentsBag2 = bag2.toArray();
+            for(int i =0; i < contentsBag2.length; i++){
+                unionBag.add(contentsBag2[i]); //add entries to union bag
+            }
+            //return union bag
+            return unionBag; 
+    }
 
    public BagInterface<T> intersection(BagInterface<T> secondBag)
    {
-        //sanitize user input?
+        //sanitize user input
         checkIntegrity();
+
         //prep the return object    
         BagInterface<T> intersectBag = new ResizableArrayBag<T>();
-        //create copies of each bag
-        BagInterface<T> first = new ResizableArrayBag<T>(); 
-        BagInterface<T> second = new ResizableArrayBag<T>(); //parameter bag
-        //creating arrays to copy the contents
-        T[] bag1 =toArray();
-        T[] bag2 = secondBag.toArray();
-
-        //add the contents to bag 1
-        for (int index = 0; index < bag1.length; index++)
-        {
-            first.add(bag1[index]);
-        } 
-
-        //add the contents to bag 2
-        for (int index = 0; index < bag2.length; index++)
-        {
-            second.add(bag2[index]);
-        } 
-
-        //beginning to fill bag 3 (intersection)
-        for (int index = 0; index < bag1.length; index++)
-        {
-            T value = bag1[index]; //gets [index] value in bag 1
-            int firstamount = 1; //frequency which T value appears in bag 1 after checking only one value
+ 
+        //if either bags are empty, return empy intersect bag. (impossible to have intersecting entries)
+        if(isEmpty() || secondBag.isEmpty())
+            return intersectBag;
         
-            if(second.contains(value)) //check to see if bag2 contains value from bag 1
-                firstamount = first.getFrequencyOf(value); //updated frequency which T value appears in bag 1 checking all values
-                int secondTimes = second.getFrequencyOf(value); //frequency in which T value appears in bag 2
-
-                //finds the smaller value of two frequencies and assigns that value to int timesToAdd
-                int timesToAdd;
-                if(firstamount < secondTimes)
-                    timesToAdd = firstamount;
-                else
-                    timesToAdd = secondTimes;
-
-                //adds T value to intersection bag j times (equal to timesToAdd)
-                for(int j =0; j < timesToAdd; j++)
-                {
-                intersectBag.add(value);
-                }
+        //prepare copies of both bags
+        T[] contentsBag1 = toArray(); 
+        T[] contentsBag2 = secondBag.toArray();
         
-            //removes all T values from bag 1
-            for(int f =0; f< firstamount; f++)
-            {
-            first.remove(value);
+        //use intersect bag as the copy for bag 1
+        for (int index = 0; index < getCurrentSize(); index++)
+        {
+            intersectBag.add(contentsBag1[index]);
+        } 
+        
+        //add entries to copy of bag2
+        BagInterface<T> cBag2 = new ResizableArrayBag<T>(secondBag.getCurrentSize());
+        for (int index = 0; index < contentsBag2.length; index++)
+        {
+            cBag2.add(contentsBag2[index]);
+        } 
+        
+        //while cbag2 isnt empty and the index is less than bag 1 array size, remove entries from intersect bag.  
+        int index =0;
+        while (index < contentsBag1.length)
+        {
+            T value = contentsBag1[index]; //gets entry at [index] in bag1 array
+
+            //remove the entry from intersect if bag2 does not contain it
+            if(!cBag2.contains(value))
+                intersectBag.remove(value);
+            //if both contain the value, keep value in intersect, but remove from bag 2 copy. 
+            else{
+                cBag2.remove(value);
             }
-
+            index++;
         } 
-
         //return the new bag
         return intersectBag;
    }
 
-   public BagInterface<T> difference(BagInterface<T> bag2){
+   public BagInterface<T> difference(BagInterface<T> bag2)
+   {
        //Sanitize user input
        checkIntegrity();
 
@@ -270,8 +286,6 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
 
        //Return edited bag
        return diffBag;
-
-       //(add?) possible check to see if bags are equivalent (only if it would decrease time complexity)
    }
 
 }

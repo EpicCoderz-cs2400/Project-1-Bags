@@ -40,7 +40,7 @@ public interface BagInterface<T>
 		and return a newly allocated array of all the entries in the bag. Note: If the bag is empty, the returned array is empty. */
 	public T[] toArray();
 
-	/** Method that creates a new collection of the entries that occur in both collections. Returns a new bag. */
+	/** Creates a new collection consisting of the entries that occur in both collections. Returns a new bag. */
 	public BagInterface<T> intersection(BagInterface<T> secondBag);
 
 	/**
@@ -49,5 +49,7 @@ public interface BagInterface<T>
 	 * @return collection made from finding all elements of bag 1 that are not in bag2.
 	 */
 	public BagInterface<T> difference(BagInterface<T> bag2);
+	/** The union of two collections consists of their contents combined into a new collection  */
+	public BagInterface<T> union(BagInterface<T> bag2);
     
 } // end BagInterface
