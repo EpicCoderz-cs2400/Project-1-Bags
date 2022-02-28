@@ -10,7 +10,10 @@ public class LinkedBag<T> implements BagInterface<T> {
         firstNode = null;
         numberOfEntries = 0;
     } // end default constructor
-
+/**
+ * @return The current number of entires that the bag can hold
+ * 
+ */
     public int getCurrentSize() {
         return numberOfEntries;
     } // end getCurrentSize

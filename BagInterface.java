@@ -1,4 +1,7 @@
-/** An interface that describes the operations of a bag of objects. */
+
+/**The interface that describes the operations of a bag of objects. counts the number of times an object appears in the collection. 
+ * @author Michael
+ */
 public interface BagInterface<T>
 {
 	/** Gets the current number of entries in this bag.
