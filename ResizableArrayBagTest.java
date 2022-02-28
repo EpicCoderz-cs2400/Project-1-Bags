@@ -1,4 +1,4 @@
-/*test
+/*
     This Class checking to make sure all the inital methods Resizable ArryBag work properly (testing purposes). 
     This is not the drive class or client program. The bags will be tested using Strings.
     NOT COMPLETED 
