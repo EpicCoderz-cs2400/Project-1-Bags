@@ -209,12 +209,12 @@ public class LinkedBag<T> implements BagInterface<T> {
     {
         //prep return object
         BagInterface<T> unionBag = new ResizableArrayBag<T>();
-        //return if
+        //return empty if both are empty
         if(isEmpty() && bag2.isEmpty())
             return unionBag;
-        if(!isEmpty() && bag2.isEmpty())
+        if(!isEmpty() && bag2.isEmpty()) //return with bag1 if only bag1 has entries
             return this;
-        if(isEmpty() && !bag2.isEmpty())
+        if(isEmpty() && !bag2.isEmpty()) //return with bag2 if only bag2 has entries
             return bag2;
         else{
             //add objects in bag 2 to new bag
