@@ -62,8 +62,15 @@ public class LinkedBag<T> implements BagInterface<T> {
 
         return frequency;
     } // end getFrequencyOf
+        
+    /**
+         * 
+        Tests whether this bag contains a given entry.
+         @param anEntry The entry to locate.
+         @return true if the bag contains anEntry, or false otherwise.
+     */
 
-    public boolean contains(T anEntry) { //Test whether this bag contains a given entry.
+    public boolean contains(T anEntry) { 
         Node currentNode = firstNode;
         while (currentNode != null) {
             if (currentNode.data.equals(anEntry)) {
@@ -108,7 +115,11 @@ public class LinkedBag<T> implements BagInterface<T> {
         return null;
     } // end findNode
 
-    public boolean isEmpty() { //check if bag is Empty
+    /**
+        Check bag is empty.
+        @return True if this bag is empty, or false if not.
+    */
+    public boolean isEmpty() { 
         
         return numberOfEntries ==0;
     }
