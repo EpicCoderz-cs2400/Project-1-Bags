@@ -42,7 +42,12 @@ public class LinkedBag<T> implements BagInterface<T> {
 
         return result;
     } // end toArray
-
+/**
+ * 
+ * Counts number of times 'an entry' appears in said bag
+ * @param anEntry The entry to be located
+ * @return frequency of 'an entry'
+ */
     public int getFrequencyOf(T anEntry) {  //Count the number of times a given entry appears in this bag.
         int frequency = 0;
 
