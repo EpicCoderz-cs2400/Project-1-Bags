@@ -170,10 +170,22 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
         bag = Arrays.copyOf(bag, newLength);
     } // end doubleCapacity
 
+    //throws an exception if the client has null for a bag entry
+    private void checkForNull(BagInterface<T> bag2)
+    {
+        T[] contents = bag2.toArray();
+        for(int i =0; i<contents.length; i++){
+            if(contents[i] == null)
+                throw new NullPointerException("A bag contains a null element. Not valid.");
+        }
+    }
+
     public BagInterface<T> union(BagInterface<T> bag2)
     {
         //sanitize user input 
         checkIntegrity();
+        checkForNull(bag2);//checks if bag contains null entry and throws exception if it does
+        
         //prep return object
         BagInterface<T> unionBag = new ResizableArrayBag<T>();
 
@@ -201,6 +213,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
    {
         //sanitize user input
         checkIntegrity();
+        checkForNull(secondBag);//checks if bag contains null entry and throws exception if it does
 
         //prep the return object    
         BagInterface<T> intersectBag = new ResizableArrayBag<T>();
@@ -249,6 +262,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>{
    {
        //Sanitize user input
        checkIntegrity();
+       checkForNull(bag2);//checks if bag contains null entry and throws exception if it does
 
        //Prep return object
        BagInterface<T> diffBag = new ResizableArrayBag<T>();
