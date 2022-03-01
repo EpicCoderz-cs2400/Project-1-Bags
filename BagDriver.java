@@ -317,13 +317,13 @@ public class BagDriver
                     if(bag1.isEmpty() && bag3.isEmpty()){
                         System.out.println("The difference is: " + Arrays.toString(bag1.difference(bag4).toArray()));
                     }
-                }else
-                    System.out.println("Not Valid entry");
+                }
             }while(!choice.equals("Q"));
         
         }
         
         //close snanner
+        System.out.println("Letter Bag Program has ended");
         scnr.close();
 
     }
@@ -340,7 +340,7 @@ public class BagDriver
         System.out.println("I: Creates new bag using intersection (Only available after creation of bag2)");
         System.out.println("U: Creates new bag using union (Only available after creation of bag2)");
         System.out.println("D: Creates new bag using difference (Only available after creation of bag2)");
-        System.out.println("Q: Finished with bag 1.");
+        System.out.println("Q: Move onto the next bag (If on the second bag it quits the program).");
     }
 
 }
