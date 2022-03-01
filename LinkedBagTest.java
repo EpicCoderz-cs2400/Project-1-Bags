@@ -55,6 +55,8 @@
       System.out.println("Intersection should have: empty");
       testUnion(aBag8, aBag9);
       System.out.println("Union should have: d d d E e A Y");
+      testDifference(aBag8, aBag9);
+      System.out.println("Difference should have: d d d E e A Y");
 
       System.out.println("\nCreating an empty LinkedBag.");
       System.out.println("Testing intersection with one empty bag");
@@ -68,6 +70,8 @@
       System.out.println("Intersection should be null");
       testUnion(aBag6, aBag5);
       System.out.println("Union should have: A B A C A F E");
+      testDifference(aBag6, aBag5);
+      System.out.println("Difference should have: A B A C A F E");
 	} // end main
    
    /**

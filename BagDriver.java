@@ -29,7 +29,7 @@ public class BagDriver
         response = scnr.nextLine();
 
         //user selects RAB
-        if(response.equals("R")){  
+        if(response.equalsIgnoreCase("R")){  
             System.out.println("R: Resizable Array Bag Selected.");
             do{
                 //printing menu
@@ -38,7 +38,7 @@ public class BagDriver
                 choice = scnr.nextLine();
 
                 //adding
-                if(choice.equals("A")){//adding
+                if(choice.equalsIgnoreCase("A")){//adding
                     do{
                         System.out.println("Type letter you want to add:");
                         choice = scnr.nextLine();
@@ -46,50 +46,50 @@ public class BagDriver
                         System.out.println(choice + " was added."); 
                         System.out.println("Would you like to add another letter? Y: yes N: no");
                         quitter = scnr.nextLine();
-                        if(quitter.equals("N")){
+                        if(quitter.equalsIgnoreCase("N")){
                             adding = false;
                         }
                     }while(adding);
                     choice = "";
                 }
                 //removing
-                else if(choice.equals("R")){//removing an entry NOT DONE
+                else if(choice.equalsIgnoreCase("R")){//removing an entry NOT DONE
                     System.out.println("Type the letter you want removed.");
                     choice = scnr.nextLine();
                     bag1.remove(choice);
                 }
 
                 //clearing all entries
-                else if(choice.equals("Cl")){//clearing a list NOT DONE
+                else if(choice.equalsIgnoreCase("Cl")){//clearing a list NOT DONE
                     bag1.clear();
                     System.out.println("All entries were cleared");
                 }
                 //prints all entries
-                else if(choice.equals("P")){//
+                else if(choice.equalsIgnoreCase("P")){//
                     System.out.println("List:");
                     System.out.println(Arrays.toString(bag1.toArray()));
                 }
                 //Prints the size of the bag
-                else if(choice.equals("S")){
+                else if(choice.equalsIgnoreCase("S")){
                     System.out.println("The bag has " + bag1.getCurrentSize() + " entries");
                 }
                 //two bag methods
-                else if(choice.equals("I")){
+                else if(choice.equalsIgnoreCase("I")){
                     System.out.println("Not availbale with only one bag:");
                 }
-                else if(choice.equals("U")){
+                else if(choice.equalsIgnoreCase("U")){
                     System.out.println("Not availbale with only one bag:");
                 }
-                else if(choice.equals("D")){
+                else if(choice.equalsIgnoreCase("D")){
                     System.out.println("Not availbale with only one bag:");
                 }
-            }while(!choice.equals("Q"));
+            }while(!choice.equalsIgnoreCase("Q"));
             response = "";
             adding = true;
         }
 
         //user selects linked bag
-        else if(response.equals("L")){
+        else if(response.equalsIgnoreCase("L")){
             System.out.println("Linked Bag Selected.");
             
             do{
@@ -99,7 +99,7 @@ public class BagDriver
                 choice = scnr.nextLine();
 
                 //adding
-                if(choice.equals("A")){//adding
+                if(choice.equalsIgnoreCase("A")){//adding
                     do{
                         System.out.println("Type letter you want to add:");
                         choice = scnr.nextLine();
@@ -107,45 +107,45 @@ public class BagDriver
                         System.out.println(choice + " was added."); 
                         System.out.println("Would you like to add another letter? Y: yes N: no");
                         quitter = scnr.nextLine();
-                        if(quitter.equals("N")){
+                        if(quitter.equalsIgnoreCase("N")){
                             adding = false;
                         }
                     }while(adding);
                     choice = "";
                 }
                 //removing
-                else if(choice.equals("R")){//removing an entry NOT DONE
+                else if(choice.equalsIgnoreCase("R")){//removing an entry NOT DONE
                     System.out.println("Type the letter you want removed.");
                     choice = scnr.nextLine();
                     bag3.remove(choice);
                 }
 
                 //clearing all entries
-                else if(choice.equals("Cl")){//clearing a list NOT DONE
+                else if(choice.equalsIgnoreCase("Cl")){//clearing a list NOT DONE
                     bag3.clear();
                     System.out.println("All entries were cleared");
                 }
                 //prints all entries
-                else if(choice.equals("P")){//
+                else if(choice.equalsIgnoreCase("P")){//
                     System.out.println("List:");
                     System.out.println(Arrays.toString(bag3.toArray()));
                 }
                 //Prints the size of the bag
-                else if(choice.equals("S")){
+                else if(choice.equalsIgnoreCase("S")){
                     System.out.println("The bag has " + bag3.getCurrentSize() + " entries");
                 }
                 //two bag methods
-                else if(choice.equals("I")){
+                else if(choice.equalsIgnoreCase("I")){
                     System.out.println("Not availbale with only one bag:");
                 }
-                else if(choice.equals("U")){
+                else if(choice.equalsIgnoreCase("U")){
                     System.out.println("Not availbale with only one bag:");
                 }
-                else if(choice.equals("D")){
+                else if(choice.equalsIgnoreCase("D")){
                     System.out.println("Not availbale with only one bag:");
                 }else
                     System.out.println("Not Valid entry");
-            }while(!choice.equals("Q"));
+            }while(!choice.equalsIgnoreCase("Q"));
             choice = "";
         }
 
@@ -158,7 +158,7 @@ public class BagDriver
         response = scnr.nextLine();
 
         //user selects RAB
-        if(response.equals("R")){  
+        if(response.equalsIgnoreCase("R")){  
             System.out.println("R: Resizable Array Bag Selected.");
             do{
                 //printing menu
@@ -167,7 +167,7 @@ public class BagDriver
                 choice = scnr.nextLine();
 
                 //adding
-                if(choice.equals("A")){//adding
+                if(choice.equalsIgnoreCase("A")){//adding
                     do{
                         System.out.println("Type letter you want to add:");
                         choice = scnr.nextLine();
@@ -175,35 +175,35 @@ public class BagDriver
                         System.out.println(choice + " was added."); 
                         System.out.println("Would you like to add another letter? Y: yes N: no");
                         quitter = scnr.nextLine();
-                        if(quitter.equals("N")){
+                        if(quitter.equalsIgnoreCase("N")){
                             adding = false;
                         }
                     }while(adding);
                     choice = "";
                 }
                 //removing
-                else if(choice.equals("R")){//removing an entry NOT DONE
+                else if(choice.equalsIgnoreCase("R")){//removing an entry NOT DONE
                     System.out.println("Type the letter you want removed.");
                     choice = scnr.nextLine();
                     bag2.remove(choice);
                 }
 
                 //clearing all entries
-                else if(choice.equals("Cl")){//clearing a list NOT DONE
+                else if(choice.equalsIgnoreCase("Cl")){//clearing a list NOT DONE
                     bag2.clear();
                     System.out.println("All entries were cleared");
                 }
                 //prints all entries
-                else if(choice.equals("P")){//
+                else if(choice.equalsIgnoreCase("P")){//
                     System.out.println("List:");
                     System.out.println(Arrays.toString(bag2.toArray()));
                 }
                 //Prints the size of the bag
-                else if(choice.equals("S")){
+                else if(choice.equalsIgnoreCase("S")){
                     System.out.println("The bag has " + bag2.getCurrentSize() + " entries");
                 }
                 //two bag methods
-                else if(choice.equals("I")){
+                else if(choice.equalsIgnoreCase("I")){
                     if(!bag1.isEmpty() && bag3.isEmpty())
                         System.out.println("The intersection is: " + Arrays.toString(bag1.intersection(bag2).toArray()));{
                     }
@@ -214,7 +214,7 @@ public class BagDriver
                         System.out.println("The intersection is: " + Arrays.toString(bag1.intersection(bag2).toArray()));
                     }
                 }
-                else if(choice.equals("U")){
+                else if(choice.equalsIgnoreCase("U")){
                     if(!bag1.isEmpty() && bag3.isEmpty()){
                         System.out.println("The union is: " + Arrays.toString(bag1.union(bag2).toArray()));
                     }
@@ -225,7 +225,7 @@ public class BagDriver
                         System.out.println("The union is: " + Arrays.toString(bag1.union(bag2).toArray()));
                     }
                 }
-                else if(choice.equals("D")){
+                else if(choice.equalsIgnoreCase("D")){
                     if(!bag1.isEmpty() && bag3.isEmpty()){
                         System.out.println("The difference is: " + Arrays.toString(bag1.difference(bag2).toArray()));
                     }
@@ -236,13 +236,13 @@ public class BagDriver
                         System.out.println("The difference is: " + Arrays.toString(bag1.difference(bag2).toArray()));
                     }
                 }
-            }while(!choice.equals("Q"));
+            }while(!choice.equalsIgnoreCase("Q"));
             response = "";
             adding = true;
         }
         
         //user selects linked bag
-        else if(response.equals("L")){
+        else if(response.equalsIgnoreCase("L")){
             System.out.println("R: Resizable Array Bag Selected.");
             do{
                 //printing menu
@@ -251,7 +251,7 @@ public class BagDriver
                 choice = scnr.nextLine();
 
                 //adding
-                if(choice.equals("A")){//adding
+                if(choice.equalsIgnoreCase("A")){//adding
                     do{
                         System.out.println("Type letter you want to add:");
                         choice = scnr.nextLine();
@@ -259,35 +259,35 @@ public class BagDriver
                         System.out.println(choice + " was added."); 
                         System.out.println("Would you like to add another letter? Y: yes N: no");
                         quitter = scnr.nextLine();
-                        if(quitter.equals("N")){
+                        if(quitter.equalsIgnoreCase("N")){
                             adding = false;
                         }
                     }while(adding);
                     choice = "";
                 }
                 //removing
-                else if(choice.equals("R")){//removing an entry NOT DONE
+                else if(choice.equalsIgnoreCase("R")){//removing an entry NOT DONE
                     System.out.println("Type the letter you want removed.");
                     choice = scnr.nextLine();
                     bag4.remove(choice);
                 }
 
                 //clearing all entries
-                else if(choice.equals("Cl")){//clearing a list NOT DONE
+                else if(choice.equalsIgnoreCase("Cl")){//clearing a list NOT DONE
                     bag4.clear();
                     System.out.println("All entries were cleared");
                 }
                 //prints all entries
-                else if(choice.equals("P")){//
+                else if(choice.equalsIgnoreCase("P")){//
                     System.out.println("List:");
                     System.out.println(Arrays.toString(bag4.toArray()));
                 }
                 //Prints the size of the bag
-                else if(choice.equals("S")){
+                else if(choice.equalsIgnoreCase("S")){
                     System.out.println("The bag has " + bag4.getCurrentSize() + " entries");
                 }
                 //two bag methods
-                else if(choice.equals("I")){
+                else if(choice.equalsIgnoreCase("I")){
                     if(!bag1.isEmpty() && bag3.isEmpty()){
                         System.out.println("The intersection is: " + Arrays.toString(bag1.intersection(bag4).toArray()));
                     }
@@ -298,7 +298,7 @@ public class BagDriver
                         System.out.println("The intersection is: " + Arrays.toString(bag1.intersection(bag4).toArray()));
                     }
                 }
-                else if(choice.equals("U")){
+                else if(choice.equalsIgnoreCase("U")){
                     if(!bag1.isEmpty() && bag3.isEmpty()){
                         System.out.println("The union is: " + Arrays.toString(bag1.union(bag4).toArray()));
                     }
@@ -309,7 +309,7 @@ public class BagDriver
                         System.out.println("The union is: " + Arrays.toString(bag1.union(bag4).toArray()));
                     }
                 }
-                else if(choice.equals("D")){
+                else if(choice.equalsIgnoreCase("D")){
                     if(!bag1.isEmpty() && bag3.isEmpty()){
                         System.out.println("The difference is: " + Arrays.toString(bag1.difference(bag4).toArray()));
                     }
@@ -320,7 +320,7 @@ public class BagDriver
                         System.out.println("The difference is: " + Arrays.toString(bag1.difference(bag4).toArray()));
                     }
                 }
-            }while(!choice.equals("Q"));
+            }while(!choice.equalsIgnoreCase("Q"));
 
         
         }
