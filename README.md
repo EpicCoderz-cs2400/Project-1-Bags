@@ -11,5 +11,6 @@ All: Time complexities and explanations.
   
 We did not use a framework for testing.  
   
-Link to Video: https://youtu.be/ZEvLBVtOU2s
+Link to Demo Video:https://www.wevideo.com/view/2584441219  
+Methods: https://youtu.be/ZEvLBVtOU2s  
 Link to JavaDoc:
