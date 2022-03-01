@@ -1,10 +1,12 @@
-Adrian Caballero 
-Corey Bangi
-Michael Smith
-
-Javadoc and union method by Michael
-Intersection method and test classes by Adrian 
-Difference method and test classes by Corey
-
-Link to Video:
+Group EpicCoderz:  
+Adrian Caballero  
+Corey Bangi  
+Michael Smith  
+  
+Contributions:  
+Michael: Created Javadoc and union method. Helped with BagDriver.   
+Adrian: Made the intersection method, test classes, and BagDriver.  
+Corey: Made the difference method and test classes. Helped with BagDriver. 
+  
+Link to Video:  
 Link to JavaDoc:
