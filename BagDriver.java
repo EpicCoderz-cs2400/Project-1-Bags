@@ -146,8 +146,10 @@ public class BagDriver
                 }else
                     System.out.println("Not Valid entry");
             }while(!choice.equals("Q"));
-            response = "";
+            choice = "";
         }
+
+        response = "";
 
         //bag 2 into
         System.out.println("Please select an option for your second bag:");
@@ -319,6 +321,7 @@ public class BagDriver
                     }
                 }
             }while(!choice.equals("Q"));
+
         
         }
         
