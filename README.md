@@ -10,5 +10,5 @@ Corey: Made the difference method and test classes. Helped with BagDriver.
   
 We did not use a framework for testing.  
   
-Link to Video:  
-Link to JavaDoc:
+Link to Video:  https://youtu.be/ZEvLBVtOU2s
+Link to JavaDoc: https://github.com/EpicCoderz-cs2400/Project-1-Bags/tree/javadoc
